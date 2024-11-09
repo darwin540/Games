@@ -6,6 +6,14 @@
 
 <ion-content>
   <div class="camera-container">
+    <!-- Selección de jugador -->
+    <ion-item>
+      <ion-label>Selecciona Jugador</ion-label>
+      <ion-select [(ngModel)]="selectedPlayerId">
+        <ion-select-option *ngFor="let friend of friends" [value]="friend.id">{{ friend.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
     <!-- Muestra la imagen de perfil actual si está disponible -->
     <img *ngIf="profileImage" [src]="profileImage" class="profile-pic" alt="Imagen de Perfil"/>
 
@@ -19,6 +27,11 @@
 
     <!-- Canvas para procesar la imagen (oculto) -->
     <canvas id="canvas" style="display:none;"></canvas>
+    
+    <!-- Botón para guardar la imagen en el perfil del jugador -->
+    <ion-button expand="block" (click)="saveProfileImage()" [disabled]="!selectedPlayerId || !profileImage">
+      Guardar como foto de perfil
+    </ion-button>
     
     <!-- Mensaje cuando no se ha tomado ninguna foto -->
     <p *ngIf="!profileImage">No has tomado una foto aún.</p>

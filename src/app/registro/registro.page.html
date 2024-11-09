@@ -1,39 +1,38 @@
 <ion-content class="custom-content" [fullscreen]="true">
   <div class="login-container">
-    <div class="input-group">
-      <div class="input-icon">
-        <img src="/assets/correoRegist.png" alt="User Icon">
+    <form (ngSubmit)="registerStudent()" style="display: contents;">
+      <div class="input-group">
+        <div class="input-icon">
+          <img src="/assets/correoRegist.png" alt="User Icon">
+        </div>
+        <input type="text" [(ngModel)]="student.name" name="name" placeholder="Nombre" required />
       </div>
-      <input type="text" placeholder="Correo o numero">
-    </div>
 
-    <div class="input-group">
-      <div class="input-icon">
-        <img src="/assets/psswdRegist.png" alt="Password Icon">
+      <div class="input-group">
+        <div class="input-icon">
+          <img src="/assets/correoRegist.png" alt="User Icon">
+        </div>
+        <input type="email" [(ngModel)]="student.email" name="email" placeholder="Correo" required />
       </div>
-      <input type="password" placeholder="Crear Contraseña">
-    </div>
 
-    <button class="login-button" routerLink="/elige-rol">Crear cuenta</button>
-
-    <div >
-      <div class="bottom-links">
-        
-        <a href="https://facebook.com" class="link">
-          <img src="/assets/facebook.png" alt="">
-        </a>
-        <a href="https://google.com" class="link">
-          <img src="/assets/google.png" alt="">
-        </a>
-        <a href="https://play.google.com/googleplaygames?hl=es_CO" class="link">
-          <img src="/assets/playgames.png" alt="">
-        </a>
-
+      <div class="input-group">
+        <div class="input-icon">
+          <img src="/assets/psswdRegist.png" alt="Password Icon">
+        </div>
+        <input type="tel" [(ngModel)]="student.phone" name="phone" placeholder="Teléfono (10 dígitos)" required minlength="10" maxlength="10" pattern="[0-9]*" />
       </div>
-    </div>
+
+      <div class="actions-container">
+        <select [(ngModel)]="student.language" name="language" required class="role-select">
+          <option value="" disabled selected>Selecciona un rol</option>
+          <option value="master">Master</option>
+          <option value="player">player</option>
+        </select>
+        <button type="submit" class="login-button">Crear cuenta</button>
+      </div>
+    </form>
   </div>
 
-  <!-- Imagen del título del juego en la parte inferior -->
   <div class="game-title">
     <img src="/assets/Titulo_Juego1.png" alt="Título del Juego">
   </div>

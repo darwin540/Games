@@ -1,0 +1,76 @@
+.player-info-container {
+    background-color: #4a4a8a;
+    padding: 15px;
+    border-radius: 10px;
+    color: #ffffff;
+    max-width: 400px;
+    margin: auto;
+  
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+  
+      h2 {
+        font-family: 'Metal Mania', cursive;
+        margin: 0;
+      }
+  
+      .level {
+        display: flex;
+        align-items: center;
+        background-color: #ffffff;
+        color: #000000;
+        padding: 3px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 0.9em;
+  
+        ion-icon {
+          margin-left: 5px;
+        }
+      }
+    }
+  
+    .stat-row {
+      display: flex;
+      align-items: center;
+      margin: 8px 0;
+      padding: 5px 0;
+      background-color: #d3d3d3;
+      border-radius: 5px;
+  
+      .stat-label {
+        width: 20%;
+        font-weight: bold;
+        color: #000000;
+        text-align: center;
+      }
+  
+      ion-progress-bar {
+        width: 60%;
+        height: 12px;
+        border-radius: 5px;
+        margin: 0 10px;
+      }
+  
+      .stat-end {
+        width: 20%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #000000;
+  
+        span {
+          margin-right: 5px;
+          font-weight: bold;
+        }
+  
+        ion-icon {
+          font-size: 50px;
+        }
+      }
+    }
+  }
+  

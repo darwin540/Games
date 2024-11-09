@@ -1,9 +1,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap');
 
+
 ion-content {
     --background: none; /* Elimina cualquier color de fondo predeterminado */
-    background-image: url('/assets/ajustes/fondo.png'); /* Imagen de fondo */
+    background-image: url('/assets/fondo.png'); /* Imagen de fondo */
     background-size: 100% 100%; /* Asegura que la imagen se ajuste completamente al contenedor */
     background-position: center; /* Centra la imagen en la pantalla */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
@@ -12,12 +13,17 @@ ion-content {
     flex-direction: column;
     justify-content: space-between;
     padding-bottom: 20px; /* Añadir espacio inferior */
+    
+}
+
+.fondito{
+    background-color: #4e506dc7;
+    height: 100%;
 }
 
 .container-buttons{
     max-width: 500px;  /* Define el ancho máximo */
     max-height: 300px; /* Define la altura máxima */
-           /* El contenedor ocupará hasta el 100% de su elemento padre */
     height: 230px;   
     width: 100%;   /* La altura se ajustará automáticamente */
     display: flex;

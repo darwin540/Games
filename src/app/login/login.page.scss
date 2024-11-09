@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap');
 
+.back-btn{
+  position: absolute;
+  padding: 20px;
+  background: none;
+}
+
 ion-content {
   --background: none; /* Elimina cualquier color de fondo predeterminado */
   background-image: url('/assets/Inicio de Sesion 1 (1).png'); /* Imagen de fondo */
@@ -106,8 +112,7 @@ input {
   text-decoration: none;
   font-family: 'Metal Mania', cursive;
   font-size: 14px;
-  //background-color: #F6FBDB; 
-  background-image: url(/src/assets/facebook.png);
+  background-color: #F6FBDB; 
   padding: 2px 15px;
   border-radius: 15px; 
   border: 2px solid #000000; 

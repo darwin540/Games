@@ -1,0 +1,74 @@
+.friends-list-container {
+    padding: 10px;
+    background-color: #4a4a8a;
+    border-radius: 10px;
+    color: #ffffff;
+  
+    h3 {
+      text-align: center;
+      font-family: 'Metal Mania', cursive;
+      margin-bottom: 15px;
+    }
+  
+    ion-list {
+      max-height: 300px;
+      overflow-y: auto;
+      background-color: transparent;
+    }
+  
+    .friend-item {
+      display: flex;
+      align-items: center;
+      background-color: #d3d3d3;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      padding: 5px;
+  
+      .profile {
+        width: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+  
+      .profile img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid #000;
+      }
+  
+      .friend-info {
+        flex: 1;
+        padding-left: 10px;
+  
+        .friend-name {
+          font-weight: bold;
+          font-size: 1.1em;
+          margin: 0;
+          color: #000000;
+        }
+  
+        .friend-level {
+          font-size: 0.9em;
+          color: #555555;
+        }
+      }
+  
+      .actions {
+        display: flex;
+        align-items: center;
+  
+        .btn-list-friend {
+          --padding-start: 0;
+          --padding-end: 0;
+          margin: 0 5px;
+        }
+  
+        .icon-list-friend {
+          font-size: 1.2em;
+        }
+      }
+    }
+  }
+  

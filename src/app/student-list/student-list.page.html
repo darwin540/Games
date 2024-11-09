@@ -1,0 +1,10 @@
+<div class="right-section">
+  <h2>Jugadores en Sala 1</h2>
+  <div class="players-grid">
+    <div class="player" *ngFor="let player of playersInSala1">
+      <img src="assets/profile-photo.png" alt="Player Icon" class="player-icon">
+      <p>{{ player.id + ". " + player.name }}</p>
+      <button></button>
+    </div>
+  </div>
+</div>

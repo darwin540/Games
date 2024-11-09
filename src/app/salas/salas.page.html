@@ -1,6 +1,5 @@
 <ion-content fullscreen>
   <div class="main-container">
-    <!-- Superposición para la imagen de fondo -->
     <div class="overlay"></div>
 
     <!-- Sección Izquierda (Master y Volver) -->
@@ -20,14 +19,17 @@
       <div class="room" *ngFor="let room of rooms">
         <div class="room-details">
           <p>{{ room.name }}</p>
-          <p>Id: {{ room.id }}</p>
+          <p>Id: {{ room.id }}</p>          
         </div>
       </div>
+
       <div class="button-container">
         <ion-button expand="block" class="crear-sala-btn">Crear Sala</ion-button>
         <ion-button expand="block" class="eliminar-sala-btn">Eliminar Sala</ion-button>
       </div>
     </div>
+
+
 
     <!-- Sección Derecha (Jugadores en Línea) -->
     <div class="right-section">
@@ -35,7 +37,10 @@
       <div class="players-grid">
         <div class="player" *ngFor="let player of players">
           <img src="assets/profile-photo.png" alt="Player Icon" class="player-icon">
-          <p>{{ player.name }}</p>
+          <p>{{ player.id + ". "+ player.name }} </p>
+          <button></button>
+
+
         </div>
       </div>
     </div>

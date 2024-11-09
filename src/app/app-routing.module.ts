@@ -1,3 +1,5 @@
+import { StudentListPageModule } from './student-list/student-list.module';
+import { StudentListPage } from './student-list/student-list.page';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
@@ -10,6 +12,7 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+
   },
   {
     path: 'registro',
@@ -52,16 +55,21 @@ const routes: Routes = [
     loadChildren: () => import('./barra-vida/barra-vida.module').then( m => m.BarraVidaPageModule)
   },
   {
-    path: 'register',
-    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
-  },
-  {
     path: 'ajuste',
     loadChildren: () => import('./ajuste/ajuste.module').then( m => m.AjustePageModule)
   },
-
-
-
+  {
+    path: 'student-crud',
+    loadChildren: () => import('./student-crud/student-crud.module').then( m => m.StudentCrudPageModule)
+  },
+  {
+    path: 'student-list',
+    loadChildren: () => import('./student-list/student-list.module').then( m => m.StudentListPageModule)
+  },
+  {
+    path: 'assign-image',
+    loadChildren: () => import('./assign-image/assign-image.module').then( m => m.AssignImagePageModule)
+  }
 ];
 
 @NgModule({

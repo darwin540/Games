@@ -1,20 +1,25 @@
 <ion-content class="custom-content" [fullscreen]="true">
+  <button class="back-btn" routerLink="/inicio">
+    <ion-icon name="arrow-back-circle-outline" color="light" size="large"></ion-icon>
+  </button>
   <div class="login-container">
-    <div class="input-group">
-      <div class="input-icon">
-        <img src="/assets/image 7.png" alt="User Icon">
+    <form (ngSubmit)="login()" style="display: contents;">
+      <div class="input-group">
+        <div class="input-icon">
+          <img src="/assets/image 7.png" alt="User Icon">
+        </div>
+        <input type="text" [(ngModel)]="credentials.email" name="email" placeholder="Usuario" required />
       </div>
-      <input type="text" placeholder="Usuario">
-    </div>
 
-    <div class="input-group">
-      <div class="input-icon">
-        <img src="/assets/image 6.png" alt="Password Icon">
+      <div class="input-group">
+        <div class="input-icon">
+          <img src="/assets/image 6.png" alt="Password Icon">
+        </div>
+        <input type="password" [(ngModel)]="credentials.phone" name="phone" placeholder="Contraseña" required />
       </div>
-      <input type="password" placeholder="Contraseña">
-    </div>
 
-    <button class="login-button" routerLink="/elige-rol">Iniciar Sesión</button>
+      <button type="submit" class="login-button">Iniciar Sesión</button>
+    </form>
 
     <div class="bottom-links">
       <a href="#" class="link">¿Olvidaste tu contraseña?</a>
@@ -22,7 +27,6 @@
     </div>
   </div>
 
-  <!-- Imagen del título del juego en la parte inferior -->
   <div class="game-title">
     <img src="/assets/Titulo_Juego1.png" alt="Título del Juego">
   </div>

@@ -1,0 +1,22 @@
+  <div class="friends-list-container">
+    <h3>Lista de Amigos</h3>
+    <ion-list>
+      <ion-item *ngFor="let friend of friends" lines="none" class="friend-item">
+        <div class="profile">
+          <img src="assets/personajes/image.webp" alt="Friend Icon" />
+        </div>
+        <div class="friend-info">
+          <p class="friend-name">{{ friend.name }}</p>
+          <p class="friend-level">Nivel {{ friend.level }}</p>
+        </div>
+        <div class="actions">
+          <ion-button fill="clear" color="success" (click)="sendMessage(friend)">
+            <ion-icon name="mail-outline"></ion-icon>
+          </ion-button>
+          <ion-button fill="clear" color="danger" (click)="removeFriend(friend)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>

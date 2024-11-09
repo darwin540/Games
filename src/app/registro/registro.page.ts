@@ -1,11 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder
-} from '@angular/forms';
+import { Component } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { StudentService } from '../servicios/student.service';
 
 
 @Component({
@@ -13,52 +8,79 @@ import { AlertController } from '@ionic/angular';
   templateUrl: './registro.page.html',
   styleUrls: ['./registro.page.scss'],
 })
-export class RegistroPage implements OnInit {
+export class RegistroPage {
+  student = {
+    name: '',
+    email: '',
+    phone: '',
+    language: ''
+  };
+  router: any;
 
-  formularioRegistro: FormGroup;
+  constructor(
+    private studentService: StudentService,
+    private alertController: AlertController
+  ) {}
 
-  constructor(public fb: FormBuilder,
-    public alertController: AlertController
-  ) {
-    this.formularioRegistro = this.fb.group({
-      'nombre': new FormControl("",Validators.required),
-      'password': new FormControl("",Validators.required),
-      'confirmacionPassword': new FormControl("", Validators.required)
-    });
-   }
-
-  ngOnInit() {
-  }
-
-  async guardar(){
-    var f = this.formularioRegistro.value;
-
-    if (this.formularioRegistro.invalid){
+  registerStudent() {
+    if (
+      this.student.name &&
+      this.student.email &&
+      this.student.phone &&
+      this.student.language
+    ) {
       
-      const alert = await this.alertController.create({
-        header: 'Datos Incompletos',
-        message: 'Debes llenar todos los datos',
-        buttons: ['Entendido'],
-      });
-  
-      await alert.present();
-      return;
+      if (!this.validateEmail(this.student.email)) {
+        this.presentAlert('Error', 'Por favor, ingrese un correo válido.');
+        return;
+      }
+
+      if (this.student.phone.length !== 10) {
+        this.presentAlert('Error', 'El teléfono debe tener 10 dígitos.');
+        return;
+      }
+
+      this.studentService.createStudent(this.student).subscribe(
+        async response => {
+          console.log('Usuario registrado:', response);
+
+          localStorage.setItem('userRole', this.student.language);
+
+          await this.presentAlert('Éxito', 'Usuario registrado exitosamente.');
+          this.resetForm();
+          this.router.navigate(['/salas']);
+        },
+        async error => {
+          console.error('Error al registrar usuario:', error);
+          await this.presentAlert(
+            'Error',
+            'Hubo un problema al registrar el usuario.'
+          );
+        }
+      );
     }
-
-    var usuario= {
-      nombre: f.nombre,
-      password: f.password
-    }
-
-    localStorage.setItem('usuario',JSON.stringify(usuario)); 
-    const alert = await this.alertController.create({
-      header: 'Genial !',
-      message: 'Usuario registrado exitosamente',
-      buttons: ['Entendido'],
-    });
-
-    await alert.present();
-
   }
 
+  resetForm() {
+    this.student = {
+      name: '',
+      email: '',
+      phone: '',
+      language: ''
+    };
+  }
+
+  private validateEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  async presentAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header,
+      message,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
 }

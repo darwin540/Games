@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'; // Importar Router
+import { StudentService } from '../servicios/student.service';
 
 import {
-    FormGroup,
-    FormControl,
-    Validators,
-    FormBuilder
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder
 } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 
@@ -14,50 +15,25 @@ import { AlertController } from '@ionic/angular';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
 
-  formularioLogin: FormGroup;
+  credentials = { email: '', phone: '' };
 
-  // Inyectar Router en el constructor
-  constructor(
-    public fb: FormBuilder,
-    public alertController: AlertController,
-    private router: Router  // Asegúrate de agregar private router aquí
-  ) { 
-    
-    this.formularioLogin = this.fb.group({
-      'nombre': new FormControl("", Validators.required),
-      'password': new FormControl("", Validators.required)
-    });
-  }
+  constructor(private authService: StudentService, private router: Router) { }
 
-  ngOnInit() {}
-
-  async ingresar(){
-    var f = this.formularioLogin.value;
-  
-    var usuarioString = localStorage.getItem('usuario');
-  
-    if (usuarioString !== null) {
-      var usuario = JSON.parse(usuarioString);
-  
-      if (usuario.nombre === f.nombre && usuario.password === f.password) {
-        console.log('Ingresado correctamente');
-        
-        // Redirigir a otra página
-        this.router.navigate(['/juego']);  // Reemplaza 'pagina-destino' por la ruta deseada
-
-      } else {
-        const alert = await this.alertController.create({
-          header: 'Datos Incorrectos',
-          message: 'Usuario o contraseña incorrectos',
-          buttons: ['Entendido'],
-        });
-    
-        await alert.present();
+  login() {
+    console.log('Intentando iniciar sesión con:', this.credentials); // Para verificar credenciales
+    this.authService.login(this.credentials).subscribe(
+      (response) => {
+        console.log('Inicio de sesión exitoso:', response);
+        localStorage.setItem('student', JSON.stringify(response.student));
+        this.router.navigate(['/elige-rol']);
+      },
+      (error) => {
+        console.error('Error en el inicio de sesión:', error);
+        alert('Credenciales incorrectas');
       }
-    } else {
-      console.log('No hay usuarios registrados');
-    }
+    );
   }
+
 }

@@ -4,29 +4,31 @@
   font-family: 'Metal Mania', cursive;
 }
 
+/* General */
 .main-container {
   display: flex;
   height: 100%;
   justify-content: space-between;
   padding: 10px;
-  background-image: url('/assets/fondo.png'); /* Imagen de fondo */
+  background-image: url('/assets/fondo.png');
   background-size: cover;
 }
-.volver-img {
-  width: 150px; /* Ajusta el ancho ligeramente más grande */
-  height: auto; /* Esto hace que la altura se ajuste proporcionalmente */
-  margin-bottom: 10px;
-  cursor: pointer; /* Cambia el cursor para indicar que es clicable */
-}
-.master-img {
-  width: 150px; /* Ajusta el ancho ligeramente más grande */
-  height: auto; /* Esto hace que la altura se ajuste proporcionalmente */
-  margin-bottom: 10px;
-  cursor: pointer; /* Cambia el cursor para indicar que es clicable */
+
+/* Overlay */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/assets/cuadrofondosalas.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 1;
 }
 
-
-/* Sección Izquierda */
+/* Left Section - Master and Back Button */
 .left-section {
   display: flex;
   flex-direction: column;
@@ -35,30 +37,10 @@
   width: 12%;
   padding: 20px;
   border-radius: 15px;
-  position: relative; /* Añadir posición relativa */
-  z-index: 2; /* Asegurar que esté por encima de la superposición */
+  position: relative;
   background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2;
 }
-  
-.center-section {
-  position: absolute;
-  top: 50%; /* Centrado vertical */
-  left: 35%; /* Ajusta este valor para mover más a la izquierda */
-  transform: translate(-50%, -50%); /* Centrar en ambas direcciones */
-  width: 37%; /* Mantén el ancho igual */
-  height: 90%; /* Aumentar la altura según sea necesario */
-  display: flex;
-  padding: 20px; /* Aumentar el padding para dar más espacio interno */
-  flex-direction: column;
-  background-image: url("/assets/cuadro.png");
-  background-size: cover; /* Mantener la imagen de fondo cubriendo el contenedor */
-  background-repeat: no-repeat;
-  z-index: 1;
-  text-align: center;
-    background-size: contain; /* Asegura que toda la imagen se muestre */
-
-}
-
 
 .master-container {
   text-align: center;
@@ -71,16 +53,31 @@
   margin-bottom: 10px;
 }
 
-.master-btn {
-  background-color: #180000;
+.master-img, .volver-img {
+  width: 150px;
+  height: auto;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
-.volver-btn {
-  margin-top: 20px;
-  background-color: #302c2c;
+/* Center Section - Rooms */
+.center-section {
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+  width: 37%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-image: url("/assets/cuadro.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-align: center;
+  z-index: 1;
 }
 
-/* Sección Central */
 .center-section h2 {
   color: #ffcc00;
   margin-bottom: 20px;
@@ -105,77 +102,47 @@
   font-size: 1rem;
 }
 
-/* Contenedor para los botones */
+/* Button Container - Create and Delete Room Buttons */
 .button-container {
-  display: flex;              // Activar flexbox
-  justify-content: space-between; // Espacio entre los botones
-  width: 100%;               // Asegúrate de que ocupe el ancho completo de la sección
-  margin-top: 15px;          // Ajusta el margen si es necesario
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 15px;
 }
 
-.crear-sala-btn,
-.eliminar-sala-btn {
-  flex: 1;                  
+.crear-sala-btn, .eliminar-sala-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 0;
+  box-shadow: none;
 }
 
-/* Botón Crear Sala */
 .crear-sala-btn {
   --background: #ffffff !important;
   color: #000000 !important;
-  padding: 10px;
-  border-radius: 0; /* Quita el redondeo para hacerlo más plano */
-  box-shadow: none; /* Elimina la sombra 3D */
 }
 
-/* Botón Eliminar Sala */
 .eliminar-sala-btn {
   --background: #ef4848 !important;
   color: #ffffff !important;
-  padding: 10px;
-  border-radius: 0; /* Quita el redondeo para hacerlo más plano */
-  box-shadow: none; /* Elimina la sombra 3D */
 }
 
-/* Sección Derecha */
+/* Right Section - Online Players */
 .right-section {
   position: absolute;
-  top: 50%; /* Centrado vertical */
-  right: 7%; /* Ajusta este valor según sea necesario */
+  top: 50%;
+  right: 7%;
   transform: translateY(-50%);
-  width: 37%; /* Mantén el ancho igual */
-  height: 90%; /* Aumentar la altura según sea necesario */
-  display: flex;
-  padding: 20px; /* Aumentar el padding para dar más espacio interno */
-  flex-direction: column;
-  background-image: url("/assets/cuadro.png");
-  background-size: cover; /* Mantener la imagen de fondo cubriendo el contenedor */
-  background-repeat: no-repeat;
-  z-index: 1;
-  text-align: center;
-background-size: contain; /* Asegura que toda la imagen se muestre */
-
-}
-
-.right-section h2 {
-  color: #ffcc00;
-  margin-bottom: 20px;
-}
-
-/* Contenedor de jugadores en la sección derecha */
-/* Contenedor de jugadores en la sección derecha */
-/* Ajustes para la sección de jugadores */
-.right-section {
-  position: relative;
   width: 37%;
-  padding: 20px;
+  height: 90%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  padding: 20px;
   background-image: url("/assets/cuadro.png");
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
-  border-radius: 10px;
   text-align: center;
+  z-index: 1;
 }
 
 .right-section h2 {
@@ -184,51 +151,33 @@ background-size: contain; /* Asegura que toda la imagen se muestre */
   font-size: 1.5rem;
 }
 
-/* Grid para organizar a los jugadores en dos columnas */
+/* Players Grid */
 .players-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 28px; /* Ajusta el espacio entre jugadores */
+  gap: 28px;
   width: 85%;
-  
 }
 
-/* Contenedor de cada jugador */
 .player {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #ffffff;
-  border-radius: 8px;
-  padding: 1px 1px; /* Ajusta el padding */
+  border-radius: 20px;
+  padding: 1px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   font-size: 0.9rem;
   color: #170000;
-  border-radius: 20px;
-
 }
 
-/* Icono del jugador */
 .player-icon {
-  width: 30px; /* Ajusta el tamaño del icono */
+  width: 30px;
   height: 30px;
   margin-right: 10px;
-  border-radius: 50%; /* Redondea el icono */
-  background-color: #d9d9d9; /* Color de fondo para el icono */
+  border-radius: 50%;
+  background-color: #d9d9d9;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('/assets/cuadrofondosalas.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  opacity: 1;
-  z-index: 1;
-  border-radius: 0; /* Asegúrate de que no haya bordes redondeados */
 }

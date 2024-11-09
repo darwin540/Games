@@ -6,11 +6,15 @@
       </div>
       <div class="attribute-controls">
         <div class="control">
-          <ion-button (click)="decrement(attribute)" fill="clear" size="small">-</ion-button>
+<!--           <ion-button (click)="decrement(attribute)" fill="clear" size="small">-</ion-button> -->
           <input type="number" [(ngModel)]="attribute.value" readonly />
-          <ion-button (click)="increment(attribute)" fill="clear" size="small">+</ion-button>
+<!--           <ion-button (click)="increment(attribute)" fill="clear" size="small">+</ion-button> -->
         </div>
         <ion-range [(ngModel)]="attribute.value" min="0" max="100" step="1"></ion-range>
+        <div class="control">
+          <ion-button (click)="decrement(attribute)" fill="clear" size="small">-</ion-button>
+        <ion-button (click)="increment(attribute)" fill="clear" size="small">+</ion-button>
+        </div>
       </div>
     </div>
   </div>

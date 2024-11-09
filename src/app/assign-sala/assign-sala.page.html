@@ -1,0 +1,18 @@
+<h2>Asignar Sala a Estudiante</h2>
+<form [formGroup]="assignSalaForm" (ngSubmit)="assignSala()">
+  <div>
+    <label for="studentId">Seleccionar Estudiante</label>
+    <select id="studentId" formControlName="studentId">
+      <option *ngFor="let student of students" [value]="student.id">
+        {{ student.name }}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <label for="salaId">ID de Sala</label>
+    <input id="salaId" type="text" formControlName="salaId" />
+  </div>
+
+  <button type="submit" [disabled]="assignSalaForm.invalid">Asignar Sala</button>
+</form>

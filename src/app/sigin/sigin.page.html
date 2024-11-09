@@ -1,0 +1,25 @@
+<div class="login-container">
+  <h2>Iniciar Sesión</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="email">Correo Electrónico:</label>
+      <input id="email" formControlName="email" type="email" placeholder="Ingresa tu email">
+      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        <small>Correo electrónico inválido.</small>
+      </div>
+    </div>
+
+    <div>
+      <label for="phone">Teléfono:</label>
+      <input id="phone" formControlName="phone" type="text" placeholder="Ingresa tu teléfono (10 dígitos)">
+      <div *ngIf="loginForm.get('phone')?.invalid && loginForm.get('phone')?.touched">
+        <small>El teléfono debe tener 10 dígitos.</small>
+      </div>
+    </div>
+
+    <button type="submit">Iniciar Sesión</button>
+  </form>
+
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+</div>

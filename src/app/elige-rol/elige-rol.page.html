@@ -1,17 +1,21 @@
 <ion-content fullscreen>
+  <button class="back-btn" routerLink="/inicio">
+    <ion-icon name="arrow-back-circle-outline"  color="light"  size="large"></ion-icon>
+  </button>
   <div class="background-container">
     <div class="role-selection">
       <ion-card class="role-card" (click)="selectRole('master')">
+        <img src="assets/personajes/master-Photoroom 1.png" alt="Master Icon">
         <img src="assets/master-Photoroom 1.png" alt="Master Icon">
-        <ion-card-header>
-          <ion-card-title>Master</ion-card-title>
+i        <ion-card-header>
+          <img src="assets/BotonMaster.png" alt="Botón Master" class="button-image">
         </ion-card-header>
       </ion-card>
       
       <ion-card class="role-card" (click)="selectRole('jugador')">
         <img src="assets/personajes/jugador-Photoroom 1.png" alt="Jugador Icon">
         <ion-card-header>
-          <ion-card-title>Jugador</ion-card-title>
+          <img src="assets//BotonJugador.png" alt="Botón Jugador" class="button-image">
         </ion-card-header>
       </ion-card>
     </div>

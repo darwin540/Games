@@ -1,0 +1,25 @@
+<h2>Asignar Imagen de Perfil a Estudiante</h2>
+<form [formGroup]="assignImageForm" (ngSubmit)="assignImage()">
+  <div>
+    <label for="studentId">Seleccionar Estudiante</label>
+    <select id="studentId" formControlName="studentId">
+      <option *ngFor="let student of students" [value]="student.id">
+        {{ student.name }}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <label for="profilePicture">Imagen de Perfil</label>
+    <input id="profilePicture" type="file" (change)="onFileChange($event)" />
+  </div>
+
+  <button type="submit" [disabled]="assignImageForm.invalid">Asignar Imagen</button>
+</form>
+
+<h3>Lista de Estudiantes con Imagen</h3>
+<div *ngFor="let student of students" class="student-card">
+  <img *ngIf="student.profile_picture" [src]="getImageUrl(student.profile_picture)" alt="Imagen de perfil" class="profile-pic" />
+  <img *ngIf="!student.profile_picture" src="assets/default-profile.png" alt="Imagen predeterminada" class="profile-pic" />
+  <p>{{ student.name }}</p>
+</div>
