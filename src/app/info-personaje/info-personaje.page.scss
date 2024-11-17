@@ -4,6 +4,22 @@
   font-family: 'Metal Mania', cursive;
 }
 
+ion-content .fondito {
+  height: 100vh; /* Make the main grid container take up the full viewport height */
+}
+
+ion-content .columnas-sup,
+ion-content .columnas-inf {
+  height: 50vh; /* Each section occupies 50% of the viewport height */
+}
+
+ion-content .barra-vida,
+ion-content .friends-list-container,
+ion-content .attributes-container {
+  height: 100%; /* Ensure children take up the full height of their 50% container */
+  overflow-y: auto; /* Enable scrolling if content overflows */
+}
+
 ion-content {
   --background: none;
   background-image: url('/assets/fondo.png');
@@ -20,6 +36,83 @@ ion-content {
   background-color: rgba(78, 80, 109, 0.78);
 }
 
+/* Player Info Container Styles */
+.player-info-container {
+  background-color: #4a4a8a;
+  border-radius: 10px;
+  color: #ffffff;
+  max-width: 400px;
+  margin: auto;
+}
+
+.player-info-container .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.player-info-container .header h2 {
+  font-family: 'Metal Mania', cursive;
+  margin: 0;
+}
+
+.player-info-container .header .level {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.player-info-container .header .level ion-icon {
+  margin-left: 5px;
+}
+
+.player-info-container .stat-row {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  padding: 5px 0;
+  background-color: #d3d3d3;
+  border-radius: 5px;
+}
+
+.player-info-container .stat-row .stat-label {
+  width: 20%;
+  font-weight: bold;
+  color: #000000;
+  text-align: center;
+}
+
+.player-info-container .stat-row ion-progress-bar {
+  width: 60%;
+  height: 12px;
+  border-radius: 5px;
+  margin: 0 10px;
+}
+
+.player-info-container .stat-row .stat-end {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+}
+
+.player-info-container .stat-row .stat-end span {
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.player-info-container .stat-row .stat-end ion-icon {
+  font-size: 1.2em;
+}
+
+/* Existing Styles */
 .col-left {
   display: flex;
   flex-direction: column;
@@ -67,7 +160,7 @@ ion-content {
   margin-top: 180px;
 }
 
-.attributes-container {
+/* .attributes-container {
   padding: 10px;
   background-color: #f1f1f1;
   border-radius: 10px;
@@ -130,9 +223,8 @@ ion-content {
   width: 80%;
   margin: 0 10px;
 }
-
-/* Lista de amigos */
-
+ */
+/* Friends List */
 .friends-list-container {
   background-color: #585893;
   border: groove 8px;
@@ -143,9 +235,7 @@ ion-content {
   margin-left: -35px;
   display: flex;
   flex-direction: column;
-  padding: 5px; /* Reducir el padding general */
-
-
+  padding: 5px;
 }
 
 .title-container {
@@ -168,56 +258,39 @@ ion-content {
 }
 
 ion-list {
-  max-height: none; /* Remueve cualquier límite de altura */
+  max-height: none;
   overflow-y: auto;
   background: none;
-  padding: 0 10px; /* Añade un poco de padding horizontal */
-
+  padding: 0 10px;
 }
 
 .friend-item {
-
   display: flex;
   align-items: center;
   border-radius: 5px;
   margin: 5px;
   --padding: 0;
-  --padding-start: 0px; 
-  --inner-padding-end:0px;
+  --padding-start: 0px;
+  --inner-padding-end: 0px;
   padding: 0;
   --background: #D9D9D9;
 }
 
-/* Contenedor general de la tarjeta de amigo */
 .friend-card {
-  background-color: #ffffff; /* Fondo blanco */
-  padding: 20px; /* Espacio interno */
-  border-radius: 10px; /* Bordes redondeados */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
-  display: flex; /* Alineación en una fila */
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
   align-items: center;
-  gap: 10px; /* Espacio entre los elementos */
-  width: 160%; /* Disminuye el ancho */
-  height: 35px; /* Aumenta la altura */
+  gap: 10px;
+  width: 160%;
+  height: 35px;
   margin-left: -34px;
-  
-
 }
 
-.friend-card .image-background {
-  position: absolute; /* La imagen estará en el fondo */
-  top: 0; /* Coloca la imagen en la parte superior */
-  left: 0; /* Coloca la imagen a la izquierda */
-  width: 100%; /* Hace que la imagen ocupe todo el ancho del contenedor */
-  height: 100%; /* Hace que la imagen ocupe todo el alto del contenedor */
-  object-fit: cover; /* Ajusta la imagen para cubrir el área sin distorsionarse */
-  z-index: -1; /* Coloca la imagen detrás del contenido */
-}
-
-
-/* Icono de perfil fuera de la tarjeta */
 .profile {
-  margin-right: 10px; /* Espacio entre la imagen y el contenido */
+  margin-right: 10px;
 }
 
 .profile img {
@@ -225,13 +298,11 @@ ion-list {
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  margin-left: -15px; /* Espacio entre la imagen y el contenido */
-
+  margin-left: -15px;
 }
 
-/* Información del amigo */
 .friend-info {
-  flex: 1; /* Ocupa el espacio disponible para el texto */
+  flex: 1;
 }
 
 .friend-name {
@@ -246,10 +317,9 @@ ion-list {
   margin: 0;
 }
 
-/* Botones de acción */
 .actions {
   display: flex;
-  gap: 5px; /* Espacio entre los botones */
+  gap: 5px;
 }
 
 .btn-list-friend {
@@ -260,5 +330,60 @@ ion-list {
 }
 
 .icon-list-friend {
-  font-size: 2em; /* Ajusta el tamaño del icono */
+  font-size: 2em;
+}
+
+.name-player{
+  font-size: 18px;
+}
+.player-info-container{
+  width: 100%;
+  height: 100%;
+}
+
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #d3d3d3;
+  border-radius: 5px;
+  font-size: 0.85em; /* Reduce font size for text */
+}
+
+.stat-label {
+  flex: 1;
+  text-align: left;
+  font-weight: bold;
+  color: #333;
+  font-size: 0.85em; /* Reduced font size */
+  
+}
+ion-progress-bar {
+  width: 95% !important;
+  
+}
+
+
+.stat-end {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  font-size: 0.8em; /* Slightly smaller font for the end section */
+}
+
+.stat-end span {
+  margin-right: 4px; /* Adjust spacing between text and icon */
+}
+
+.stat-end ion-icon {
+  font-size: 5px; /* Smaller icon size */
+}
+
+.texto{
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
 }
