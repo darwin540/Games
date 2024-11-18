@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { StudentService } from '../servicios/student.service';
+import { HabilidadesService } from '../servicios/habilidades.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-info-personaje',
@@ -9,27 +10,7 @@ import { StudentService } from '../servicios/student.service';
 export class InfoPersonajePage implements OnInit {
   @ViewChild('fileInput') fileInput: any;
   imageSrc: string = 'assets/personajes/image.webp';
-  // Método para seleccionar archivo (local)
-  selectImage() {
-    this.fileInput.nativeElement.click();
-  }
 
-  // Método para manejar la selección de archivo local
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.imageSrc = reader.result as string;
-      };
-      reader.readAsDataURL(file);
-    }
-  }
-
-  // Método para actualizar la imagen desde el backend
-  updateImageFromBackend(imageUrl: string) {
-    this.imageSrc = imageUrl;
-  }
   // Atributos del personaje
   fuerza: number = 50;
   estamina: number = 50;
@@ -58,16 +39,75 @@ export class InfoPersonajePage implements OnInit {
   mana = 0.6;
   equip = 0.5;
 
-  constructor(private studentService: StudentService) {
-    this.calcularMagia();
-  }
+  constructor(private habilidadesService: HabilidadesService,  private router: Router,) {}
 
   ngOnInit() {
-    this.loadFriends(); // Cargar amigos al iniciar
     this.loadPlayerData();
+    this.loadFriends();
   }
 
+  /**
+   * Método para seleccionar una imagen local
+   */
+  selectImage() {
+    this.fileInput.nativeElement.click();
+  }
 
+  /**
+   * Método para manejar la selección de un archivo local
+   */
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageSrc = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  /**
+   * Método para enviar los datos de las habilidades al backend
+   */
+  saveHabilidades() {
+    const habilidades = {
+      fuerza: this.fuerza,
+      estamina: this.estamina,
+      balance: this.balance,
+      resistencia: this.resistencia,
+      conocimiento: this.conocimiento,
+      destreza: this.destreza,
+      f_voluntad: this.Fvoluntad, // Cambiado a snake_case
+      carisma: this.carisma,
+      construccion: this.construccion,
+      musculatura: this.musculatura,
+      punteria: this.punteria,
+      inteligencia: this.inteligencia,
+      salud: this.salud,
+      logica: this.logica,
+      sabiduria: this.sabiduria,
+      intuicion: this.intuicion,
+      verborrea: this.verborrea,
+      apariencia: this.apariencia,
+    };
+  
+    this.habilidadesService.saveHabilidades(habilidades).subscribe(
+      (response) => {
+        console.log('Habilidades guardadas con éxito:', response);
+        this.router.navigate(['/habilidades']);
+      },
+      
+      (error) => {
+        console.error('Error al guardar las habilidades:', error);
+      }
+    );
+  }
+  
+
+  /**
+   * Método para cargar la información del jugador desde el localStorage
+   */
   loadPlayerData() {
     const studentData = localStorage.getItem('student');
     const profileImage = localStorage.getItem('CapacitorStorage.profileImage');
@@ -84,24 +124,11 @@ export class InfoPersonajePage implements OnInit {
     }
   }
 
-  // Método para obtener los valores actuales
-  getAttributes() {
-    const attributes = {
-      fuerza: this.fuerza,
-      inteligencia: this.inteligencia,
-      destreza: this.destreza,
-      sabiduria: this.sabiduria,
-      construccion: this.construccion,
-      apariencia: this.apariencia,
-    };
-    console.log(attributes);
-    return attributes;
-  }
-
-
-  // Métodos para cargar amigos desde el servicio
+  /**
+   * Método para cargar la lista de amigos desde el servicio
+   */
   loadFriends() {
-    this.studentService.getStudents().subscribe(
+    this.habilidadesService.getHabilidades().subscribe(
       (response) => {
         this.friends = response.students.map((student: any) => ({
           name: student.name,
@@ -117,7 +144,24 @@ export class InfoPersonajePage implements OnInit {
     );
   }
 
-  // Métodos de cálculo de atributos
+  /**
+   * Método para enviar un mensaje a un amigo
+   */
+  sendMessage(friend: { name: string }) {
+    console.log('Enviar mensaje a:', friend.name);
+  }
+
+  /**
+   * Método para eliminar un amigo de la lista
+   */
+  removeFriend(friend: { name: string }) {
+    this.friends = this.friends.filter((f) => f.name !== friend.name);
+    console.log('Amigo eliminado:', friend.name);
+  }
+
+  /**
+   * Métodos para calcular atributos dinámicos
+   */
   calcularMagia(): void {
     this.estamina = 100 - this.fuerza;
     this.musculatura = 100 - this.estamina;
@@ -148,21 +192,17 @@ export class InfoPersonajePage implements OnInit {
     this.verborrea = 100 - this.carisma;
   }
 
-  // Método para construir la URL completa de la imagen
+  /**
+   * Método para construir la URL completa de la imagen
+   * @param imagePath Ruta de la imagen en el backend
+   */
   getImageUrl(imagePath: string): string {
     return `http://127.0.0.1:8000/storage/${imagePath}`;
   }
 
-  // Métodos para manejar la lista de amigos
-  sendMessage(friend: { name: string }) {
-    console.log('Enviar mensaje a:', friend.name);
-  }
-
-  removeFriend(friend: { name: string }) {
-    console.log('Eliminar amigo:', friend.name);
-  }
-
-  // Métodos para manipular barras (opcional)
+  /**
+   * Métodos para manipular barras de estado (opcional)
+   */
   adjustHealth(value: number) {
     this.health = Math.min(1, Math.max(0, this.health + value));
   }

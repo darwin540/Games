@@ -24,33 +24,32 @@
 
         <!-- Ramas y Atributos -->
         <div class="branches">
-<!-- Nodo: Fuerza -->
-<div class="attribute-branch">
-  <div class="attribute-node">Fuerza</div>
-  <div class="sub-nodes">
-    <div class="sub-node">
-      <img src="assets/iconofuerza.png" alt="Fuerza Icono" class="custom-icon"> 
-      <div class="sub-node-value">0</div>
-    </div>
-    <div class="sub-node">
-      <img src="assets/iconofuerza2.png" alt="Fuerza Icono" class="custom-icon">
-      <div class="sub-node-value">0</div>     
-    </div>
-  </div>
-</div>
+          <!-- Nodo: Fuerza -->
+          <div class="attribute-branch">
+            <div class="attribute-node">Fuerza</div>
+            <div class="sub-nodes">
+              <div class="sub-node">
+                <img src="assets/iconofuerza.png" alt="Fuerza Icono" class="custom-icon"> 
+                <div class="sub-node-value">{{ habilidades.fuerza || 0 }}</div>
+              </div>
+              <div class="sub-node">
+                <img src="assets/iconofuerza2.png" alt="Fuerza Icono" class="custom-icon">
+                <div class="sub-node-value">{{ habilidades.fuerza || 0 }}</div>
+              </div>
+            </div>
+          </div>
 
           <!-- Nodo: Destreza -->
           <div class="attribute-branch">
             <div class="attribute-node">Destreza</div>
             <div class="sub-nodes">
               <div class="sub-node">
-                <img src="assets/iconodestreza.png" alt="Fuerza Icono" class="custom-icon">  
-                <div class="sub-node-value">0</div>
-
+                <img src="assets/iconodestreza.png" alt="Destreza Icono" class="custom-icon">  
+                <div class="sub-node-value">{{ habilidades.destreza || 0 }}</div>
               </div>
               <div class="sub-node">
-                <img src="assets/iconodestreza2.png" alt="Fuerza Icono" class="custom-icon"> 
-                <div class="sub-node-value">0</div>
+                <img src="assets/iconodestreza2.png" alt="Destreza Icono" class="custom-icon"> 
+                <div class="sub-node-value">{{ habilidades.destreza || 0 }}</div>
               </div>
             </div>
           </div>
@@ -60,13 +59,12 @@
             <div class="attribute-node">Constructor</div>
             <div class="sub-nodes">
               <div class="sub-node">
-                <img src="assets/iconconstructor.png" alt="Fuerza Icono" class="custom-icon">  
-                <div class="sub-node-value">0</div>
-
+                <img src="assets/iconconstructor.png" alt="Constructor Icono" class="custom-icon">  
+                <div class="sub-node-value">{{ habilidades.construccion || 0 }}</div>
               </div>
               <div class="sub-node">
-                <img src="assets/iconconstructor2.png" alt="Fuerza Icono" class="custom-icon"> 
-                <div class="sub-node-value">0</div>
+                <img src="assets/iconconstructor2.png" alt="Constructor Icono" class="custom-icon"> 
+                <div class="sub-node-value">{{ habilidades.construccion || 0 }}</div>
               </div>
             </div>
           </div>
@@ -76,13 +74,12 @@
             <div class="attribute-node">Inteligencia</div>
             <div class="sub-nodes">
               <div class="sub-node">
-                <img src="assets/iinteligencia.png" alt="Fuerza Icono" class="custom-icon">  
-                <div class="sub-node-value">0</div>
+                <img src="assets/iinteligencia.png" alt="Inteligencia Icono" class="custom-icon">  
+                <div class="sub-node-value">{{ habilidades.inteligencia || 0 }}</div>
               </div>
               <div class="sub-node">
-                <img src="assets/iinteligencia2.png" alt="Fuerza Icono" class="custom-icon">  
-                <div class="sub-node-value">0</div>
-
+                <img src="assets/iinteligencia2.png" alt="Inteligencia Icono" class="custom-icon">  
+                <div class="sub-node-value">{{ habilidades.inteligencia || 0 }}</div>
               </div>
             </div>
           </div>
@@ -92,12 +89,12 @@
             <div class="attribute-node">Sabiduría</div>
             <div class="sub-nodes">
               <div class="sub-node">
-                <img src="assets/isabiduria.png" alt="Fuerza Icono" class="custom-icon"> 
-                <div class="sub-node-value">0</div>
+                <img src="assets/isabiduria.png" alt="Sabiduría Icono" class="custom-icon"> 
+                <div class="sub-node-value">{{ habilidades.sabiduria || 0 }}</div>
               </div>
               <div class="sub-node">
-                <img src="assets/isabiduria2.png" alt="Fuerza Icono" class="custom-icon"> 
-                <div class="sub-node-value">0</div>
+                <img src="assets/isabiduria2.png" alt="Sabiduría Icono" class="custom-icon"> 
+                <div class="sub-node-value">{{ habilidades.sabiduria || 0 }}</div>
               </div>
             </div>
           </div>
@@ -107,12 +104,12 @@
             <div class="attribute-node">Apariencia</div>
             <div class="sub-nodes">
               <div class="sub-node">
-                <img src="assets/iapariencia.png" alt="Fuerza Icono" class="custom-icon">  <!-- Usando imagen personalizada -->
-                <div class="sub-node-value">0</div>
+                <img src="assets/iapariencia.png" alt="Apariencia Icono" class="custom-icon"> 
+                <div class="sub-node-value">{{ habilidades.apariencia || 0 }}</div>
               </div>
               <div class="sub-node">
-                <img src="assets/iapariencia2.png" alt="Fuerza Icono" class="custom-icon">  <!-- Usando imagen personalizada -->
-                <div class="sub-node-value">0</div>
+                <img src="assets/iapariencia2.png" alt="Apariencia Icono" class="custom-icon"> 
+                <div class="sub-node-value">{{ habilidades.apariencia || 0 }}</div>
               </div>
             </div>
           </div>

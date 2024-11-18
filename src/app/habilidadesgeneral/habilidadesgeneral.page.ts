@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HabilidadesService } from '../servicios/habilidades.service';
 
 @Component({
   selector: 'app-habilidadesgeneral',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HabilidadesgeneralPage implements OnInit {
 
-  constructor() { }
+  habilidades: any = {}; // Almacena las habilidades obtenidas del backend
+
+  constructor(private habilidadesService: HabilidadesService) { }
 
   ngOnInit() {
+    this.loadHabilidades();
   }
 
+  loadHabilidades() {
+    this.habilidadesService.getHabilidades().subscribe(
+      (response: any) => {
+        this.habilidades = response.habilidad; // Asegúrate de que el JSON coincida con tu API
+      },
+      (error) => {
+        console.error('Error al obtener las habilidades:', error);
+      }
+    );
+  }
 }
