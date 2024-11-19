@@ -1,0 +1,33 @@
+<ion-content class="custom-content">
+  <div class="vertical-camera-interface">
+    <!-- Input para seleccionar jugador -->
+    <div class="input-group">
+      <ion-label position="floating">Selecciona un jugador</ion-label>
+      <ion-select [(ngModel)]="selectedPlayerId" placeholder="Selecciona..." interface="popover">
+        <ion-select-option *ngFor="let friend of friends" [value]="friend.id">{{ friend.name }}</ion-select-option>
+      </ion-select>
+    </div>
+
+    <!-- Contenedor para cámara e imagen -->
+    <div class="camera-image-container">
+      <!-- Espacio de video para la cámara -->
+      <div class="camera-preview">
+        <video id="video" autoplay></video>
+      </div>
+
+      <!-- Espacio para renderizar la imagen capturada -->
+      <div class="image-preview">
+        <img *ngIf="profileImage" [src]="profileImage" alt="Imagen tomada" class="image-preview-img">
+        <p *ngIf="!profileImage">No has tomado una foto aún.</p>
+      </div>
+    </div>
+
+    <!-- Botones en la parte inferior -->
+    <div class="bottom-controls">
+      <ion-button class="capture-button" (click)="capturePhoto()">Tomar foto</ion-button>
+      <ion-button class="confirm-button" (click)="saveProfileImage()" [disabled]="!selectedPlayerId || !profileImage">
+        Confirmar
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

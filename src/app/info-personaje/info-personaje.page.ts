@@ -115,9 +115,9 @@ export class InfoPersonajePage implements OnInit {
       const student = JSON.parse(studentData);
       this.imageSrc = student.profile_picture
         ? student.profile_picture
-        : 'assets/default-profile.png';
+        : 'assets/personajes/image.webp';
     } else {
-      this.imageSrc = 'assets/default-profile.png';
+      this.imageSrc = 'assets/personajes/image.webp';
     }
   }
 

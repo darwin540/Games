@@ -99,7 +99,11 @@ const routes: Routes = [
   {
     path: 'reestablecer2',
     loadChildren: () => import('./restablecer2/restablecer2.module').then( m => m.Restablecer2PageModule)
+  },  {
+    path: 'selfie',
+    loadChildren: () => import('./selfie/selfie.module').then( m => m.SelfiePageModule)
   }
+
 ];
 
 @NgModule({
