@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HabilidadesService } from '../servicios/habilidades.service';
-import { Router } from '@angular/router';
+import { StudentService } from '../servicios/student.service';
 
 @Component({
   selector: 'app-info-personaje',
@@ -18,7 +18,7 @@ export class InfoPersonajePage implements OnInit {
   resistencia: number = 50;
   conocimiento: number = 50;
   destreza: number = 50;
-  Fvoluntad: number = 50;
+  f_voluntad: number = 50; // Cambio a snake_case
   carisma: number = 50;
   construccion: number = 50;
   musculatura: number = 50;
@@ -39,7 +39,7 @@ export class InfoPersonajePage implements OnInit {
   mana = 0.6;
   equip = 0.5;
 
-  constructor(private habilidadesService: HabilidadesService,  private router: Router,) {}
+  constructor(private habilidadesService: HabilidadesService, private studentService: StudentService) {}
 
   ngOnInit() {
     this.loadPlayerData();
@@ -78,7 +78,7 @@ export class InfoPersonajePage implements OnInit {
       resistencia: this.resistencia,
       conocimiento: this.conocimiento,
       destreza: this.destreza,
-      f_voluntad: this.Fvoluntad, // Cambiado a snake_case
+      f_voluntad: this.f_voluntad, // Ajustado a snake_case
       carisma: this.carisma,
       construccion: this.construccion,
       musculatura: this.musculatura,
@@ -91,19 +91,16 @@ export class InfoPersonajePage implements OnInit {
       verborrea: this.verborrea,
       apariencia: this.apariencia,
     };
-  
+
     this.habilidadesService.saveHabilidades(habilidades).subscribe(
       (response) => {
         console.log('Habilidades guardadas con éxito:', response);
-        this.router.navigate(['/habilidades']);
       },
-      
       (error) => {
         console.error('Error al guardar las habilidades:', error);
       }
     );
   }
-  
 
   /**
    * Método para cargar la información del jugador desde el localStorage
@@ -128,14 +125,15 @@ export class InfoPersonajePage implements OnInit {
    * Método para cargar la lista de amigos desde el servicio
    */
   loadFriends() {
-    this.habilidadesService.getHabilidades().subscribe(
+    this.studentService.getStudents().subscribe(
       (response) => {
+        // Mapear la respuesta para incluir la URL de la imagen de perfil
         this.friends = response.students.map((student: any) => ({
           name: student.name,
-          level: 0, // Lógica para el nivel
+          level: 0, // Aquí puedes definir la lógica para el nivel
           profile_picture: student.profile_picture
             ? this.getImageUrl(student.profile_picture)
-            : 'assets/default-profile.png',
+            : 'assets/default-profile.png', // Imagen predeterminada si no hay imagen de perfil
         }));
       },
       (error) => {
@@ -173,8 +171,8 @@ export class InfoPersonajePage implements OnInit {
   }
 
   calcularConstruccion(): void {
-    this.Fvoluntad = 100 - this.construccion;
-    this.intuicion = 100 - this.Fvoluntad;
+    this.f_voluntad = 100 - this.construccion; // Ajustado a snake_case
+    this.intuicion = 100 - this.f_voluntad;
   }
 
   calcularInteligencia(): void {
