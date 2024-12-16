@@ -1,4 +1,4 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" scrollY="false" >
   <ion-grid class="fondito">
     <ion-row>
       <ion-col size="2" class="col-left">
@@ -13,19 +13,60 @@
           </a>
         </div>
       </ion-col>
-
       <ion-col size="10" class="col-right">
-        <ion-grid style="height: 100%;">
-          <ion-row style="height: 50%;">
-            <ion-col></ion-col>
-            <ion-col></ion-col>
+        <ion-grid style="height: 50%;">
+          <ion-row class="columnas-sup">
+            <ion-col class="barra-vida">
+              <ion-grid class="player-info-container">
+                <ion-row class="header" align-items-center>
+                  <ion-col size="8">
+                    <h2 class="name-player">Nombre Jugador</h2>
+                  </ion-col>
+                  <ion-col class="level" size="4"  text-right>
+                    <span class="texto" >Nivel 0</span>
+                    <ion-icon name="caret-up-outline"></ion-icon>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="stat-row">
+                  <ion-col size="2" class="stat-label">Vida</ion-col>
+                  <ion-col size="7">
+                    <ion-progress-bar value="0.8" color="success"></ion-progress-bar>
+                  </ion-col>
+                  <ion-col size="3" class="stat-end" text-right>
+                    <span>HP</span>
+                    <ion-icon name="water-outline"></ion-icon>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="stat-row">
+                  <ion-col size="2" class="stat-label">Mana</ion-col>
+                  <ion-col size="7">
+                    <ion-progress-bar value="0.6" color="primary"></ion-progress-bar>
+                  </ion-col>
+                  <ion-col size="3" class="stat-end" text-right>
+                    <span>MP</span>
+                    <ion-icon name="planet-outline"></ion-icon>
+                  </ion-col>
+                </ion-row>
+                <ion-row class="stat-row">
+                  <ion-col size="2" class="stat-label">Equip</ion-col>
+                  <ion-col size="7">
+                    <ion-progress-bar value="0.5" color="warning"></ion-progress-bar>
+                  </ion-col>
+                  <ion-col size="3" class="stat-end" text-right>
+                    <span>DPT</span>
+                    <ion-icon name="hammer-outline"></ion-icon>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-col>
+            <ion-col class="image-container">
+              <img class="imagen-person" [src]="imageSrc" alt="Imagen del personaje" (click)="selectImage()">            </ion-col>
             <ion-col>
               <div class="friends-list-container">
                 <!-- Título Fijo -->
                 <div class="title-container">
                   <h3 class="title-list-friend">Lista de Amigos</h3>
                 </div>
-                
                 <!-- Lista Desplazable -->
                 <ion-list class="friends-list">
                   <ion-item *ngFor="let friend of friends" lines="none" class="friend-item">
@@ -35,7 +76,6 @@
                         <ion-col size="3" class="profile">
                           <img [src]="friend.profile_picture" alt="Imagen de perfil de {{ friend.name }}" class="profile-pic" />
                         </ion-col>
-
                         <!-- Contenedor de la tarjeta de amigo -->
                         <ion-col size="7">
                           <div class="friend-card">
@@ -44,7 +84,6 @@
                               <p class="friend-name">{{ friend.name }}</p>
                               <p class="friend-level">Nivel {{ friend.level }}</p>
                             </div>
-
                             <!-- Botones de acción -->
                             <div class="actions">
                               <ion-button fill="clear" color="success" (click)="sendMessage(friend)" class="btn-list-friend">
@@ -63,14 +102,197 @@
               </div>
             </ion-col>
           </ion-row>
-
-          <ion-row style="height: 50%;">
-            <ion-col>
-              <!-- Sección de Atributos (comentada) -->
-            </ion-col>
-            <ion-col></ion-col>
-            <ion-col></ion-col>
-          </ion-row>
+          
+          <div class="attributes-container">
+            <!-- Primera fila de atributos -->
+            <ion-row >
+              <ion-col>
+                <div class="attribute-row">
+                  <div class="attribute-label">Estamina:</div>
+                  <div class="attribute-controls">
+                    <input type="range" min="0" max="100" [value]="estamina" readonly />
+                  </div>
+                </div>
+          
+                <div class="attribute-row">
+                  <div class="attribute-label">Balance:</div>
+                  <div class="attribute-controls">
+                    <input type="range" min="0" max="100" [value]="balance" readonly />
+                  </div>
+                </div>
+              </ion-col>
+          
+              <ion-col>
+                <div class="attribute-row">
+                  <div class="attribute-label">Fuerza:</div>
+                  <div class="attribute-controls">
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      [(ngModel)]="fuerza"
+                      (input)="calcularMagia()"
+                    />
+                  </div>
+                </div>
+          
+                <div class="attribute-row">
+                  <div class="attribute-label">Inteligencia:</div>
+                  <div class="attribute-controls">
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      [(ngModel)]="inteligencia"
+                      (input)="calcularInteligencia()"
+                    />
+                  </div>
+                </div>
+              </ion-col>
+          
+              <ion-col>
+                <div class="attribute-row">
+                  <div class="attribute-label">Musculatura:</div>
+                  <div class="attribute-controls">
+                    <input type="range" min="0" max="100" [value]="musculatura" readonly />
+                  </div>
+                </div>
+          
+                <div class="attribute-row">
+                  <div class="attribute-label">Puntería:</div>
+                  <div class="attribute-controls">
+                    <input type="range" min="0" max="100" [value]="punteria" readonly />
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+          
+            <!-- Segunda fila de atributos -->
+            <ion-row>
+              <ion-col>
+                <div class="attribute-row">
+                  <div class="attribute-label">Resistencia:</div>
+                  <div class="attribute-controls">
+                    <input type="range" min="0" max="100" [value]="resistencia" readonly />
+                  </div>
+                </div>
+          
+                <div class="attribute-row">
+                  <div class="attribute-label">Conocimiento:</div>
+                  <div class="attribute-controls">
+                    <input type="range" min="0" max="100" [value]="conocimiento" readonly />
+                  </div>
+                </div>
+              </ion-col>
+          
+              <ion-col>
+                <div class="attribute-row">
+                  <div class="attribute-label">Destreza:</div>
+                  <div class="attribute-controls">
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      [(ngModel)]="destreza"
+                      (input)="calcularDestreza()"
+                    />
+                  </div>
+                </div>
+          
+                <div class="attribute-row">
+                  <div class="attribute-label">Sabiduría:</div>
+                  <div class="attribute-controls">
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      [(ngModel)]="sabiduria"
+                      (input)="calcularSabiduria()"
+                    />
+                  </div>
+                </div>
+              </ion-col>
+          
+              <ion-col>
+                <div class="attribute-row">
+                  <div class="attribute-label">Salud:</div>
+                  <div class="attribute-controls">
+                    <input type="range" min="0" max="100" [value]="salud" readonly />
+                  </div>
+                </div>
+          
+                <div class="attribute-row">
+                  <div class="attribute-label">Lógica:</div>
+                  <div class="attribute-controls">
+                    <input type="range" min="0" max="100" [value]="logica" readonly />
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+          
+            <!-- Tercera fila de atributos -->
+            <ion-row>
+              <ion-col>
+                <div class="attribute-row">
+                  <div class="attribute-label">F. Voluntad:</div>
+                  <div class="attribute-controls">
+                    <input type="range" min="0" max="100" [value]="Fvoluntad" readonly />
+                  </div>
+                </div>
+          
+                <div class="attribute-row">
+                  <div class="attribute-label">Carisma:</div>
+                  <div class="attribute-controls">
+                    <input type="range" min="0" max="100" [value]="carisma" readonly />
+                  </div>
+                </div>
+              </ion-col>
+          
+              <ion-col>
+                <div class="attribute-row">
+                  <div class="attribute-label">Construcción:</div>
+                  <div class="attribute-controls">
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      [(ngModel)]="construccion"
+                      (input)="calcularConstruccion()"
+                    />
+                  </div>
+                </div>
+          
+                <div class="attribute-row">
+                  <div class="attribute-label">Apariencia:</div>
+                  <div class="attribute-controls">
+                    <input
+                      type="range"
+                      min="0"
+                      max="100"
+                      [(ngModel)]="apariencia"
+                      (input)="calcularApariencia()"
+                    />
+                  </div>
+                </div>
+              </ion-col>
+          
+              <ion-col>
+                <div class="attribute-row">
+                  <div class="attribute-label">Intuición:</div>
+                  <div class="attribute-controls">
+                    <input type="range" min="0" max="100" [value]="intuicion" readonly />
+                  </div>
+                </div>
+          
+                <div class="attribute-row">
+                  <div class="attribute-label">Verborrea:</div>
+                  <div class="attribute-controls">
+                    <input type="range" min="0" max="100" [value]="verborrea" readonly />
+                  </div>
+                </div>
+              </ion-col>
+            </ion-row>
+          </div>
         </ion-grid>
       </ion-col>
     </ion-row>
